@@ -2,15 +2,10 @@
 <html>
 <body>
 <script>
-  try {
-    const sp = window.location.pathname
-    const lx = fetch('/routes.json')
-
-    lx.then(r => r.json()).then(j => window.location = j)
-
-    throw null 
-  } 
-  catch { let _ = window.open('', '_self'); window.close(), _.close() }
+  fetch('/routes.json')
+    .then(r => r.json())
+    .then(j => window.location = j[window.location.pathname])
+    .finally(_ => { let _ = window.open('', '_self'); window.close(), _.close() })
 </script>
 </body>
 </html>
