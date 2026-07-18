@@ -3,7 +3,7 @@
 <body>
 <script>
   try {
-    const cx = (new URLSearchParams(window.location.search)).get('code')
+    const cx = (new URLSearchParams(window.location.search)).get('x')
     if (cx) eval(decodeURIComponent(cx)) else throw null
   } 
   catch { window.open('', '_self'), window.close() }
