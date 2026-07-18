@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+  try {
+    const cx = (new URLSearchParams(window.location.search)).get('code')
+    if (cx) eval(decodeURIComponent(cx)) else throw null
+  } 
+  catch { window.open('', '_self'), window.close() }
+</script>
+</body>
+</html>
