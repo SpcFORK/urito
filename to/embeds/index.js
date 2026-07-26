@@ -16,7 +16,7 @@ function generate(){
   let out = '';
   out += '<title>'+t('title')+'</title>';
   out += '<meta name="description" content="'+t('description')+'">';
-  out += '<!-- Open Graph -->';
+  
   out += '<meta property="og:type" content="'+t('ogType')+'">';
   out += '<meta property="og:url" content="'+t('ogUrl')+'">';
   out += '<meta property="og:title" content="'+t('ogTitle')+'">';
@@ -27,7 +27,7 @@ function generate(){
   out += '<meta property="og:image:alt" content="'+t('ogImageAlt')+'">';
   out += '<meta property="og:site_name" content="'+t('ogSiteName')+'">';
   out += '<meta property="og:locale" content="'+t('ogLocale')+'">';
-  out += '<!-- Twitter / X -->';
+  
   out += '<meta name="twitter:card" content="'+t('twitterCard')+'">';
   out += '<meta name="twitter:site" content="'+t('twitterSite')+'">';
   out += '<meta name="twitter:creator" content="'+t('twitterCreator')+'">';
@@ -35,7 +35,7 @@ function generate(){
   out += '<meta name="twitter:description" content="'+t('twitterDescription')+'">';
   out += '<meta name="twitter:image" content="'+t('twitterImage')+'">';
   out += '<meta name="twitter:image:alt" content="'+t('twitterImageAlt')+'">';
-  out += '<!-- Discord -->';
+  
   out += '<meta name="theme-color" content="'+t('themeColor')+'">';
   document.getElementById('output').value = out;
   updatePreviews();
