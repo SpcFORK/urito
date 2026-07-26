@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Meta Tag Generator</title>
+</head>
+<body>
+
+<div id="previews">
+  <div class="preview" id="prev-discord">
+    <div id="prev-discord-title">Title</div>
+    <div>Discord</div>
+    <div id="prev-discord-site">Site</div>
+  </div>
+  <div class="preview" id="prev-x">
+    <div id="prev-x-title">Title</div>
+    <div>X / Twitter</div>
+    <div id="prev-x-site">Site</div>
+  </div>
+</div>
+
+<form onsubmit="return false;">
+
+<fieldset>
+  <legend>Primary / SEO</legend>
+  <label>Title: <input type="text" id="title" size="60" value="Your Page Title Here"></label><br>
+  <label>Description: <input type="text" id="description" size="80" value="A compelling 1–2 sentence description of the page."></label>
+</fieldset>
+
+<br>
+
+<fieldset>
+  <legend>Open Graph</legend>
+  <label>Type: <input type="text" id="ogType" value="website"></label><br>
+  <label>URL: <input type="text" id="ogUrl" size="60" value="https://example.com/your-page"></label><br>
+  <label>Title: <input type="text" id="ogTitle" size="60" value="Your Page Title Here"></label><br>
+  <label>Description: <input type="text" id="ogDescription" size="80" value="A compelling 1–2 sentence description of the page."></label><br>
+  <label>Image URL: <input type="text" id="ogImage" size="60" value="https://example.com/images/og-image-1200x630.jpg"></label><br>
+  <label>Image Width: <input type="text" id="ogImageWidth" value="1200" size="6"></label>
+  <label>Image Height: <input type="text" id="ogImageHeight" value="630" size="6"></label><br>
+  <label>Image Alt: <input type="text" id="ogImageAlt" size="60" value="Descriptive alt text for the image"></label><br>
+  <label>Site Name: <input type="text" id="ogSiteName" size="40" value="Your Brand / Site Name"></label><br>
+  <label>Locale: <input type="text" id="ogLocale" value="en_US" size="10"></label>
+</fieldset>
+
+<br>
+
+<fieldset>
+  <legend>Twitter / X</legend>
+  <label>Card: <input type="text" id="twitterCard" value="summary_large_image"></label><br>
+  <label>Site Handle: <input type="text" id="twitterSite" value="@YourBrandHandle"></label><br>
+  <label>Creator Handle: <input type="text" id="twitterCreator" value="@AuthorHandle"></label><br>
+  <label>Title: <input type="text" id="twitterTitle" size="60" value="Your Page Title Here"></label><br>
+  <label>Description: <input type="text" id="twitterDescription" size="80" value="A compelling 1–2 sentence description of the page."></label><br>
+  <label>Image URL: <input type="text" id="twitterImage" size="60" value="https://example.com/images/og-image-1200x630.jpg"></label><br>
+  <label>Image Alt: <input type="text" id="twitterImageAlt" size="60" value="Descriptive alt text for the image"></label>
+</fieldset>
+
+<br>
+
+<fieldset>
+  <legend>Discord</legend>
+  <label>Theme Color: <input type="text" id="themeColor" value="#5865F2" size="10"></label>
+</fieldset>
+
+<br>
+
+<button type="button" onclick="generate()">Generate Meta Tags</button>
+
+<br><br>
+
+<fieldset>
+  <legend>Output</legend>
+  <textarea id="output" rows="30" cols="100" readonly></textarea>
+</fieldset>
+
+</form>
+
+<script>
+function t(id){return document.getElementById(id).value.trim()}
+
+function updatePreviews(){
+  let title = t('ogTitle') || t('title') || 'Title';
+  let site  = t('ogSiteName') || 'Site';
+  let img   = t('ogImage') || '';
+  ['discord','x','fb','li'].forEach(function(p){
+    let el = document.getElementById('prev-'+p);
+    el.style.backgroundImage = img ? 'url('+img+')' : 'none';
+    document.getElementById('prev-'+p+'-title').textContent = title;
+    document.getElementById('prev-'+p+'-site').textContent = site;
+  });
+}
+
+function generate(){
+  let out = '';
+  out += '<!-- Primary / SEO -->\n';
+  out += '<title>'+t('title')+'</title>\n';
+  out += '<meta name="description" content="'+t('description')+'">\n\n';
+  out += '<!-- Open Graph -->\n';
+  out += '<meta property="og:type" content="'+t('ogType')+'">\n';
+  out += '<meta property="og:url" content="'+t('ogUrl')+'">\n';
+  out += '<meta property="og:title" content="'+t('ogTitle')+'">\n';
+  out += '<meta property="og:description" content="'+t('ogDescription')+'">\n';
+  out += '<meta property="og:image" content="'+t('ogImage')+'">\n';
+  out += '<meta property="og:image:width" content="'+t('ogImageWidth')+'">\n';
+  out += '<meta property="og:image:height" content="'+t('ogImageHeight')+'">\n';
+  out += '<meta property="og:image:alt" content="'+t('ogImageAlt')+'">\n';
+  out += '<meta property="og:site_name" content="'+t('ogSiteName')+'">\n';
+  out += '<meta property="og:locale" content="'+t('ogLocale')+'">\n\n';
+  out += '<!-- Twitter / X -->\n';
+  out += '<meta name="twitter:card" content="'+t('twitterCard')+'">\n';
+  out += '<meta name="twitter:site" content="'+t('twitterSite')+'">\n';
+  out += '<meta name="twitter:creator" content="'+t('twitterCreator')+'">\n';
+  out += '<meta name="twitter:title" content="'+t('twitterTitle')+'">\n';
+  out += '<meta name="twitter:description" content="'+t('twitterDescription')+'">\n';
+  out += '<meta name="twitter:image" content="'+t('twitterImage')+'">\n';
+  out += '<meta name="twitter:image:alt" content="'+t('twitterImageAlt')+'">\n\n';
+  out += '<!-- Discord -->\n';
+  out += '<meta name="theme-color" content="'+t('themeColor')+'">\n';
+  document.getElementById('output').value = out;
+  updatePreviews();
+}
+
+updatePreviews();
+</script>
+
+</body>
+</html>
