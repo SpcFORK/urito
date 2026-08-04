@@ -1,4 +1,6 @@
-fetch(window.location.hash?.slice?.(1) ?? '/urito/to/routes.json')
-  .then(r => r.json())
-  .then(j => window.location = j[window.location.pathname])
-  .catch(r => { let _ = window.open('', '_self'); window.close(), _.close() })
+void function callee(px) {
+  fetch(px ?? '/urito/to/routes.json')
+    .then(r => r.json())
+    .then(j => j.cdn ? callee(j.cdn) : window.location = j[window.location.pathname])
+    .catch(r => { let _ = window.open('', '_self'); window.close(), _.close() })
+}()
